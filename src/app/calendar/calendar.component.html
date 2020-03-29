@@ -1,0 +1,38 @@
+<div class="container">
+  <p>Date is: {{ _date | date:'dd-MM-yyyy' }} </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th *ngFor="let weekDay of weekDayNames">{{ weekDay }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let week of weeks">
+        <td *ngFor="let dayObj of week">
+          <ng-container *ngIf="dayObj.fullDate">
+            <span>{{ dayObj.day }}</span>
+            <div class="tasks" cdkDropList>
+              <div *ngFor="let task of dayObj.tasks" cdkDrag>
+                {{ task }}
+              </div>
+            </div>
+          </ng-container>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+
+<!-- <div #dayCell class="day-cell" cdkDropList (cdkDropListDropped)="drop($event)">
+  <div>{{day.getDate()}}</div>
+  <div class="schedule-wrapper full-width">
+    <div cdkDrag *ngFor="let schedule of schedules" class="schedule" [style.width.px]="getScheduleWidth(schedule)">
+      <div class="schedule-details">
+        <div class="schedule-text">{{schedule.title}}</div>
+      </div>
+    </div>
+  </div>
+</div> -->

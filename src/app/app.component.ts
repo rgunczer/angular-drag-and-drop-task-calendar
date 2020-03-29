@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'soAppDragAndDrop';
+  dates = [ new Date(2020, 0), new Date(2020, 1), new Date(2020, 2) ];
 }
