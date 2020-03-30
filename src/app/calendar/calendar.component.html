@@ -1,5 +1,5 @@
 <div class="container">
-  <p>Date is: {{ _date | date:'dd-MM-yyyy' }} </p>
+  <p>Date is: {{ localDate | date:'dd-MM-yyyy' }} <button (click)="showData()">Show Data</button> </p>
 
   <table>
     <thead>
@@ -10,11 +10,11 @@
     <tbody>
       <tr *ngFor="let week of weeks">
         <td *ngFor="let dayObj of week">
-          <ng-container *ngIf="dayObj.fullDate">
+          <ng-container *ngIf="dayObj.schedules">
             <span>{{ dayObj.day }}</span>
-            <div class="tasks" cdkDropList>
-              <div *ngFor="let task of dayObj.tasks" cdkDrag>
-                {{ task }}
+            <div class="tasks" cdkDropList [cdkDropListData]="dayObj.schedules" (cdkDropListDropped)="drop($event)">
+              <div *ngFor="let schedule of dayObj.schedules" cdkDrag>
+                {{ schedule.title }}
               </div>
             </div>
           </ng-container>
@@ -24,15 +24,3 @@
   </table>
 
 </div>
-
-
-<!-- <div #dayCell class="day-cell" cdkDropList (cdkDropListDropped)="drop($event)">
-  <div>{{day.getDate()}}</div>
-  <div class="schedule-wrapper full-width">
-    <div cdkDrag *ngFor="let schedule of schedules" class="schedule" [style.width.px]="getScheduleWidth(schedule)">
-      <div class="schedule-details">
-        <div class="schedule-text">{{schedule.title}}</div>
-      </div>
-    </div>
-  </div>
-</div> -->
